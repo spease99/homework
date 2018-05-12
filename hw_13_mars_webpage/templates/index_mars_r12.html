@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Bootstrap Demo</title>
+
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+
+<body>
+  <!-- Creates the Overall Grid -->
+  <div class="container">
+
+    <!-- Row 1 -->
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Mars Unplugged</h1>
+      </div>
+    </div>
+ 
+     <!-- Row 1.5 -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="jumbotron text-center">
+          <h2>Refresh Mars Scrape</h2>
+          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Pull Current Data</a></p>
+        </div> 
+      </div>
+    </div>
+ 
+    <!-- Row 2 -->
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>      
+            {% for headline in nasa_db %}
+              <p>{{ headline.mars_news_headline}}</p>
+            {% endfor %}
+        </h2>
+
+         <ul style="list-style: none;">
+            {% for headline in nasa_db1 %}
+              <li>{{ headline.mars_news_story}}</li>
+            {% endfor %}
+         </ul> 
+   
+      </div>
+    </div>
+
+    <!-- Row 2.5 -->
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>   Mars Weather  </h2>
+        <h3>      
+            {% for weather in nasa_db13 %}
+              <h4>{{ weather.mars_weather}}</h4>
+            {% endfor %}
+        </h3>
+      </div>
+    </div>
+
+    <!-- Row 2.7 -->
+    <div class="row">
+      <div class="col-sm-12">
+         <p>     </p>
+      </div>
+    </div>    
+    
+    
+    <!-- Row 3 -->
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>A Cool Mars Image</h2>
+         <img src=
+            {% for url in nasa_db2 %}
+              {{ url.mars_feactur_image_url}}
+            {% endfor %}
+            class="img-rounded" alt="Cinque Terre" width="604" height="436">
+      </div>
+      <div class="col-sm-4">      
+          <table>
+            <tbody>
+              <tr>
+                <th> Parameter </th>
+                <th> Data </th>
+              </tr>
+              {% for table_guts in nasa_db3 %}
+                {{ table_guts.mars_facts_table|safe}}
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <!-- Row 3.5 -->
+    <div class="row">
+      <div class="col-sm-12">
+         <p>     </p>
+         <p>     </p>
+      </div>
+    </div>    
+        
+    
+    <!-- Row 4 -->
+    <div class="row">
+      <div class="col-sm-3">
+               <img src=
+                {% for url in nasa_db5 %}
+                        {{url.img_url_Cerb}}
+                {% endfor %}   
+               class="img-rounded" alt="Cinque Terre" width="200" height="200">
+               <h3>
+                    {% for url in nasa_db9 %}
+                        {{url.title_hemi_Cerb}}
+                    {% endfor %} 
+               </h3> 
+      </div>
+      
+      <div class="col-sm-3">
+               <img src=
+                {% for url in nasa_db6 %}
+                        {{url.img_url_Schi}}
+                {% endfor %}   
+               class="img-rounded" alt="Cinque Terre" width="200" height="200">
+               <h3>
+                    {% for url in nasa_db10 %}
+                        {{url.title_hemi_Schi}}
+                    {% endfor %} 
+               </h3> 
+      </div>
+      
+      <div class="col-sm-3">
+               <img src=
+                {% for url in nasa_db7 %}
+                        {{url.img_url_Syrt}}
+                {% endfor %}   
+               class="img-rounded" alt="Cinque Terre" width="200" height="200">
+               <h3>
+                    {% for url in nasa_db11 %}
+                        {{url.title_hemi_Syrt}}
+                    {% endfor %} 
+               </h3>  
+      </div>
+      
+      <div class="col-sm-3">
+               <img src=
+                {% for url in nasa_db8 %}
+                        {{url.img_url_Valles}}
+                {% endfor %}   
+               class="img-rounded" alt="Cinque Terre" width="200" height="200">
+               <h3>
+                    {% for url in nasa_db12 %}
+                        {{url.title_hemi_Valles}}
+                    {% endfor %} 
+               </h3> 
+      </div>
+      
+      
+      
+    </div>
+ 
+</body>
+
+</html>
