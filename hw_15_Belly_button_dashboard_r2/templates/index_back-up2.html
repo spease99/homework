@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css">  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+     
+  <div class="container">
+    
+    <!-- date selector -->  
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Belly Botton Biodiversity</h1>
+          <h1>Dashboard</h1>
+          <h3>Use the interactive charts below to explore the dataset</h3>
+          <h4>Are you in the data set?</h4>
+      </div>    
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+               <h5> select sample </h5> 
+               <div id="select_sample_id"></div>
+                
+                <h5> Sample MetaData </h5> 
+               <div id="sample_meta_data_id"></div>          
+      </div>
+        
+      <div class="col-sm-5">
+               <h5> cute pie chart </h5> 
+               <div id="pie_chart_id"></div>
+      </div>
+        
+      <div class="col-sm-5">
+               <h5> Belly Botton Washing Frequency </h5> 
+               <div id="guage_id"></div>
+    </div>      
+    <hr>
+    <!--  -->  
+    </div>
+  </div>
+    
+  <!-- <script src="data.js" type="text/javascript"></script>  -->
+  <!--- <script type='text/javascript' src='/templates/script.js'></script>  -->                                          
+  <script type="text/javascript">
+        //--- Create the drop down 
+        var sample_selected =''
+        var select_sample = d3.select('#select_sample_id')
+          .append('select')
+            .attr('class','select')
+            .on('change',function(d) {
+               date_selected = d3.select(this).property('value');
+               console.log('sample_selected = ' + date_selected);      
+            })
+            
+        //Pull available samples from /names url
+        url = "/names"
+ 
+      
+        //put samples into the drop down 
+        var options = select_sample
+          .selectAll('option')
+            .data( 
+            
+                d3.json(url, function(d) {
+                console.log(d.samples);
+                return d.samples;})     
+             )
+            .enter()
+            .append('option')
+            .attr('value' , function (d,i) { return i; })
+            //.text(function(d) { return d; });
+            .text('live_life');
+
+  </script>
+  
+  <!-- <script src="index.js" type="text/javascript"></script> -->
+    
+</body>
+
+</html>
